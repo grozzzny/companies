@@ -1,7 +1,10 @@
 <?php
+use kartik\select2\Select2;
 use yii\easyii\widgets\Redactor;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\web\JsExpression;
 use yii\widgets\ActiveForm;
 use grozzzny\widgets\switch_checkbox\SwitchCheckbox;
 
@@ -18,19 +21,38 @@ $module = $this->context->module->id;
 
 <?= $form->field($current_model, 'name') ?>
 
-<?=$form->field($current_model, 'categories')->widget(Select2::className(),[
-    'data' => ArrayHelper::map(Category::findAll(['id' => $current_model->categories]), 'id', 'fullTitle'),
+<?=$form->field($current_model, 'users')->widget(Select2::className(),[
+    'data' => ArrayHelper::map($current_model->users, 'id', 'email'),
     'pluginOptions' => [
-        'placeholder' => Yii::t('gr', 'Select category..'),
+        'placeholder' => Yii::t('gr', 'Select users..'),
         'allowClear' => true,
         'multiple' => true,
         'ajax' => [
-            'url' => '/admin/newcatalog/properties/get-list-categories',
+            'url' => '/admin/companies/ajax/get-users',
             'dataType' => 'json',
-            'data' => new JsExpression('function(params) { 
+            'data' => new JsExpression('function(params) {
                return {
                     q:params.term
-                }; 
+                };
+            }'),
+        ],
+    ],
+]);
+?>
+
+<?=$form->field($current_model, 'admins')->widget(Select2::className(),[
+    'data' => ArrayHelper::map($current_model->users, 'id', 'email'),
+    'pluginOptions' => [
+        'placeholder' => Yii::t('gr', 'Select users..'),
+        'allowClear' => true,
+        'multiple' => true,
+        'ajax' => [
+            'url' => '/admin/companies/ajax/get-users',
+            'dataType' => 'json',
+            'data' => new JsExpression('function(params) {
+               return {
+                    q:params.term
+                };
             }'),
         ],
     ],
