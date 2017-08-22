@@ -6,7 +6,27 @@ use Yii;
 use yii\data\BaseDataProvider;
 use yii\db\ActiveQuery;
 use yii\easyii\helpers\Image;
+use yii\web\User;
 
+/**
+ * Company ActiveRecord model.
+ *
+ * Database fields:
+ * @property integer $id
+ * @property string  $name
+ * @property string  $phone
+ * @property string  $email
+ * @property string  $image_file
+ * @property string  $site
+ * @property string  $description
+ * @property integer $status
+ * @property integer $order_num
+ *
+ * Defined relations:
+ * @property User[]  $users
+ * @property User[]  $admins
+ *
+ */
 class Company extends BaseModel
 {
     const PRIMARY_MODEL = true;
