@@ -14,6 +14,9 @@ use yii\web\User;
  * Database fields:
  * @property integer $id
  * @property string  $name
+ * @property string  $contry
+ * @property string  $city
+ * @property string  $address
  * @property string  $phone
  * @property string  $email
  * @property string  $image_file
@@ -52,11 +55,11 @@ class Company extends BaseModel
     {
         return [
             ['id', 'number', 'integerOnly' => true],
-            [['name'], 'string'],
+            [['name', 'country', 'city', 'address'], 'string'],
             ['image_file', 'image'],
             ['phone','match', 'pattern' => '/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/'],
             [['email'], 'email'],
-            [['site'], 'url'],
+            [['site'], 'string'],
             [['description', 'users', 'admins'], 'safe'],
             ['status', 'default', 'value' => self::STATUS_OFF],
             [['order_num'], 'integer'],
@@ -78,6 +81,9 @@ class Company extends BaseModel
             'order_num' => Yii::t('gr', 'Sort Index'),
             'users' => Yii::t('gr', 'Users'),
             'admins' => Yii::t('gr', 'Admins'),
+            'country' => Yii::t('gr', 'Country'),
+            'city' => Yii::t('gr', 'City'),
+            'address' => Yii::t('gr', 'Address')
         ];
     }
 

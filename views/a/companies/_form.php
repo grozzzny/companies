@@ -59,6 +59,9 @@ $module = $this->context->module->id;
 ]);
 ?>
 
+<?= $form->field($current_model, 'country') ?>
+<?= $form->field($current_model, 'city') ?>
+<?= $form->field($current_model, 'address') ?>
 <?= $form->field($current_model, 'phone') ?>
 <?= $form->field($current_model, 'email') ?>
 <?= $form->field($current_model, 'site') ?>
