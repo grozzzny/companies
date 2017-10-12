@@ -6,7 +6,9 @@ use Yii;
 
 class Module extends \grozzzny\base_module\Module
 {
-    public $settings = [];
+    public $settings = [
+        'modelCompany' => '',
+    ];
 
     public $controllerMap = [
         'ajax' => 'grozzzny\companies\controllers\AjaxController',
@@ -14,7 +16,7 @@ class Module extends \grozzzny\base_module\Module
 
     public function init()
     {
-        Yii::$app->view->theme->pathMap['@grozzzny/base_module/views'] = '@grozzzny/companies/views';
+        self::setView('@grozzzny/companies/views');
 
         self::registerTranslation();
 
@@ -35,5 +37,16 @@ class Module extends \grozzzny\base_module\Module
             'sourceLanguage' => 'en-US',
             'basePath' => '@grozzzny/companies/messages',
         ];
+    }
+
+    protected static function setView($view)
+    {
+        $pathMap = Yii::$app->view->theme->pathMap;
+
+        if(key_exists('@grozzzny/base_module/views', $pathMap)){
+            array_push(Yii::$app->view->theme->pathMap['@grozzzny/base_module/views'], $view);
+        }else{
+            Yii::$app->view->theme->pathMap['@grozzzny/base_module/views'] = $view;
+        }
     }
 }
