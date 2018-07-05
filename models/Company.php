@@ -5,7 +5,7 @@ use grozzzny\base_module\BaseModel;
 use Yii;
 use yii\data\BaseDataProvider;
 use yii\db\ActiveQuery;
-use yii\easyii\helpers\Image;
+use yii\easyii2\helpers\Image;
 use yii\web\User;
 
 /**

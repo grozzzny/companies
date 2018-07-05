@@ -14,7 +14,7 @@
     ],
     "require": {
         "php": ">=5.6.0",
-        "grozzzny/base_module": "dev-master"
+        "grozzzny/base_module": "v2.x-dev"
     },
     "autoload": {
         "psr-4": {
