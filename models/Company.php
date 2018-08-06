@@ -1,7 +1,7 @@
 <?php
 namespace grozzzny\companies\models;
 
-use grozzzny\base_module\BaseModel;
+//use grozzzny\base_module\BaseModel;
 use Yii;
 use yii\data\BaseDataProvider;
 use yii\easyii2\components\ActiveQuery;
