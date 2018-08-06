@@ -1,6 +1,6 @@
 <?php
 use kartik\select2\Select2;
-use yii\easyii\widgets\Redactor;
+use yii\easyii2\widgets\Redactor;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -16,13 +16,13 @@ $module = $this->context->module->id;
     'options' => ['enctype' => 'multipart/form-data', 'class' => 'model-form']
 ]); ?>
 
-<?= $this->render('@grozzzny/base_module/views/_image_file', ['model' => $current_model, 'attribute' => 'image_file'])?>
-<?= $form->field($current_model, 'image_file')->fileInput() ?>
+<?= $this->render('@easyii2/views/fast/_image_file', ['model' => $model, 'attribute' => 'image_file'])?>
+<?= $form->field($model, 'image_file')->fileInput() ?>
 
-<?= $form->field($current_model, 'name') ?>
+<?= $form->field($model, 'name') ?>
 
-<?=$form->field($current_model, 'users')->widget(Select2::className(),[
-    'data' => ArrayHelper::map($current_model->users, 'id', 'email'),
+<?=$form->field($model, 'users')->widget(Select2::className(),[
+    'data' => ArrayHelper::map($model->users, 'id', 'email'),
     'pluginOptions' => [
         'placeholder' => Yii::t('gr', 'Select users..'),
         'allowClear' => true,
@@ -40,8 +40,8 @@ $module = $this->context->module->id;
 ]);
 ?>
 
-<?=$form->field($current_model, 'admins')->widget(Select2::className(),[
-    'data' => ArrayHelper::map($current_model->users, 'id', 'email'),
+<?=$form->field($model, 'admins')->widget(Select2::className(),[
+    'data' => ArrayHelper::map($model->users, 'id', 'email'),
     'pluginOptions' => [
         'placeholder' => Yii::t('gr', 'Select users..'),
         'allowClear' => true,
@@ -59,14 +59,14 @@ $module = $this->context->module->id;
 ]);
 ?>
 
-<?= $form->field($current_model, 'country') ?>
-<?= $form->field($current_model, 'city') ?>
-<?= $form->field($current_model, 'address') ?>
-<?= $form->field($current_model, 'phone') ?>
-<?= $form->field($current_model, 'email') ?>
-<?= $form->field($current_model, 'site') ?>
+<?= $form->field($model, 'country') ?>
+<?= $form->field($model, 'city') ?>
+<?= $form->field($model, 'address') ?>
+<?= $form->field($model, 'phone') ?>
+<?= $form->field($model, 'email') ?>
+<?= $form->field($model, 'site') ?>
 
-<?= $form->field($current_model, 'description')->widget(Redactor::className(),[
+<?= $form->field($model, 'description')->widget(Redactor::className(),[
     'options' => [
         'minHeight' => 200,
         'imageUpload' => Url::to(['/admin/redactor/upload', 'dir' => Yii::$app->controller->module->id]),
@@ -76,11 +76,11 @@ $module = $this->context->module->id;
 ])?>
 
 <?=SwitchCheckbox::widget([
-    'model' => $current_model,
+    'model' => $model,
     'attributes' => [
         'status'
     ]
 ])?>
 
-<?= Html::submitButton(Yii::t('easyii', 'Save'), ['class' => 'btn btn-primary']) ?>
+<?= Html::submitButton(Yii::t('easyii2', 'Save'), ['class' => 'btn btn-primary']) ?>
 <?php ActiveForm::end(); ?>

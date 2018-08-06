@@ -4,7 +4,9 @@ namespace grozzzny\companies\models;
 use grozzzny\base_module\BaseModel;
 use Yii;
 use yii\data\BaseDataProvider;
-use yii\db\ActiveQuery;
+use yii\easyii2\components\ActiveQuery;
+use yii\easyii2\components\FastModel;
+use yii\easyii2\components\FastModelInterface;
 use yii\easyii2\helpers\Image;
 use yii\web\User;
 
@@ -30,7 +32,7 @@ use yii\web\User;
  * @property User[]  $admins
  *
  */
-class Company extends BaseModel
+class Company extends FastModel implements FastModelInterface
 {
     const PRIMARY_MODEL = true;
 
@@ -85,6 +87,18 @@ class Company extends BaseModel
             'city' => Yii::t('gr', 'City'),
             'address' => Yii::t('gr', 'Address')
         ];
+    }
+
+    public static function getNameModel()
+    {
+        // TODO: Implement getNameModel() method.
+        return Yii::t('app', 'Company');
+    }
+
+    public static function getSlugModel()
+    {
+        // TODO: Implement getNameModel() method.
+        return 'companies';
     }
 
     public function getUsers()
